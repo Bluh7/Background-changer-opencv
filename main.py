@@ -6,7 +6,12 @@ import os
 
 webcam = 0
 connected_webcams = check_connected_webcams(webcam)
-cap = cv2.VideoCapture(webcam, cv2.CAP_DSHOW)
+
+if os.name == "nt":
+    cap = cv2.VideoCapture(webcam, cv2.CAP_DSHOW)
+else:
+    cap = cv2.VideoCapture(webcam)
+    
 cap.set(3, 640)
 cap.set(4, 480)
 cap.set(cv2.CAP_PROP_FPS, 60)
